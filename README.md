@@ -23,9 +23,22 @@ Example Playbook
 
 Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
 
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
+    - name: Deploy k3s
+      hosts: all
+      become: true
+
+      vars:
+        k3s_version: v1.26.11+k3s1
+        kubernetes_version: v1.30
+
+      tasks:
+
+        - name: K3S
+          ansible.builtin.include_role:
+            name: K3S
+          tags:
+            - install
+
 
 License
 -------

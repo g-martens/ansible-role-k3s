@@ -1,7 +1,7 @@
 ---
 - name: Install K3s
   ansible.builtin.shell: |
-    curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION=v1.26.11+k3s1 sh -s - --write-kubeconfig-mode 644
+    curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION={{ k3s_version }} sh -s - --write-kubeconfig-mode 644
   register: k3sinstall
   changed_when: "'[INFO]  systemd: Starting k3s' in k3sinstall.stdout"
   # ok_when: "'[INFO]  No change detected so skipping service start' in k3sinstall.stdout"
@@ -37,10 +37,10 @@
     cat <<EOF | sudo tee /etc/yum.repos.d/kubernetes.repo
     [kubernetes]
     name=Kubernetes
-    baseurl=https://pkgs.k8s.io/core:/stable:/v1.30/rpm/
+    baseurl=https://pkgs.k8s.io/core:/stable:/{{ kubernetes_version }}/rpm/
     enabled=1
     gpgcheck=1
-    gpgkey=https://pkgs.k8s.io/core:/stable:/v1.30/rpm/repodata/repomd.xml.key
+    gpgkey=https://pkgs.k8s.io/core:/stable:/{{ kubernetes_version }}/rpm/repodata/repomd.xml.key
     exclude=kubelet kubeadm cri-tools kubernetes-cni
     EOF
 
