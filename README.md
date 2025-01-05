@@ -1,7 +1,7 @@
 Role Name
 =========
 
-A brief description of the role goes here.
+Role to install k3s on an single node
 
 Requirements
 ------------
