@@ -59,12 +59,3 @@
   args:
     executable: /bin/bash
   ignore_errors: true
-
-- name: Place MetalLB manifest
-  ansible.builtin.template:
-    src: templates/metallb.yml.j2
-    dest: /tmp/metallb.yml
-
-- name: Apply MetalLB manifest
-  ansible.builtin.shell: |
-    kubectl apply -f /tmp/metallb.yml
