@@ -1,0 +1,40 @@
+---
+# Install MetalLB
+- name: Create MetalLB k3s_namespace
+  ansible.builtin.shell:
+    cmd: "kubectl create namespace metallb-system"
+  register: create_namespace
+  ignore_errors: True
+
+- name: Install MetalLB
+  ansible.builtin.shell:
+    cmd: "kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.13.4/manifests/namespace.yaml"
+  when: create_namespace.rc == 0
+
+- name: Check if pods are running in the metallb-system namespace
+  ansible.builtin.shell:
+    cmd: "kubectl get pods -n metallb-system"
+  register: check_metallb_pods
+  until: check_metallb_pods.stdout.find('Running') != -1
+  retries: 10
+  delay: 10
+  when: create_namespace.rc == 0
+
+# Configure MetalLB
+- name: Place Metallb template
+  ansible.builtin.template:
+    src: "templates/metallb.yml.j2"
+    dest: "/tmp/metallb.yml"
+    mode: "0644"
+
+- name: Apply MetalLB Manifest.
+  ansible.builtin.shell:
+    cmd: "kubectl apply -f /tmp/metallb.yml"
+  when: create_namespace.rc == 0
+
+# Patch Service to Loadbalancer
+
+- name: Patch Service to Loadbalancer
+  ansible.builtin.shell:
+    cmd: "kubectl -n kube-system patch svc traefik -p '{"spec":{"type":"LoadBalancer"}}'"
+  when: create_namespace.rc == 0

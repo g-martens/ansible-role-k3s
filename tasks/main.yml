@@ -4,4 +4,9 @@
     file: install-rancher.yml
   tags: install
 
+- name: Install MetalLB
+  ansible.builtin.import_tasks:
+    file: install-rancher.yml
+  tags: metallb
+
 ...
