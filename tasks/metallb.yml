@@ -8,7 +8,7 @@
 
 - name: Install MetalLB
   ansible.builtin.shell:
-    cmd: "kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.13.4/manifests/namespace.yaml"
+    cmd: "kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.10.2/manifests/namespace.yaml"
   when: create_namespace.rc == 0
 
 - name: Check if pods are running in the metallb-system namespace
