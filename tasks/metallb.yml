@@ -24,10 +24,22 @@
     dest: "/tmp/metallb.yml"
     mode: "0644"
 
+- name: Place Metallb configmap template
+  ansible.builtin.template:
+    src: "templates/configmap.yml.j2"
+    dest: "/tmp/configmap.yml"
+    mode: "0644"
+
 - name: Apply MetalLB Manifest.
   ansible.builtin.shell:
     cmd: |
       kubectl apply -f /tmp/metallb.yml
+
+- name: Apply MetalLB configmap Manifest.
+  ansible.builtin.shell:
+    cmd: |
+      kubectl apply -f /tmp/configmap.yml
+
 
 # Patch Service to Loadbalancer
 - name: Patch Service to Loadbalancer
