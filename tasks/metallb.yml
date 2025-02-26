@@ -29,7 +29,8 @@
 
 - name: Apply MetalLB Manifest.
   ansible.builtin.shell:
-    cmd: "kubectl apply -f /tmp/metallb.yml"
+    cmd: |
+      kubectl apply -f /tmp/metallb.yml
   when: create_namespace.rc == 0
 
 # Patch Service to Loadbalancer
