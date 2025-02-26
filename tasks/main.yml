@@ -6,7 +6,7 @@
 
 - name: Install MetalLB
   ansible.builtin.import_tasks:
-    file: install-rancher.yml
+    file: metallb.yml
   tags: metallb
 
 ...
