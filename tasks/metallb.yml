@@ -30,12 +30,18 @@
     dest: "/tmp/configmap.yml"
     mode: "0644"
 
+- name: Pause 15 sec so the next task will succeed
+  ansible.builtin.pause:
+    seconds: 15
+
 - name: Apply MetalLB Manifest.
   ansible.builtin.shell:
     cmd: |
       kubectl apply -f /tmp/metallb.yml
   retries: 10
   delay: 10
+
+
 
 - name: Apply MetalLB configmap Manifest.
   ansible.builtin.shell:
