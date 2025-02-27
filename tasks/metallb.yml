@@ -34,6 +34,8 @@
   ansible.builtin.shell:
     cmd: |
       kubectl apply -f /tmp/metallb.yml
+  retries: 10
+  delay: 10
 
 - name: Apply MetalLB configmap Manifest.
   ansible.builtin.shell:
