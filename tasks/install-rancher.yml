@@ -1,7 +1,7 @@
 ---
 - name: Install K3s without Traefik
   ansible.builtin.shell: |
-    curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION="{{ k3s_version }}" sh -s - --write-kubeconfig-mode 644 --disable=traefik
+    curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION="{{ k3s_version }}" sh -s - --write-kubeconfig-mode 644
   register: k3sinstall
   changed_when: "'[INFO]  systemd: Starting k3s' in k3sinstall.stdout"
   # ok_when: "'[INFO]  No change detected so skipping service start' in k3sinstall.stdout"
