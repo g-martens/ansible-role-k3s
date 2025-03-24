@@ -43,7 +43,6 @@
   delay: 10
 
 
-
 - name: Apply MetalLB configmap Manifest.
   ansible.builtin.shell:
     cmd: |
