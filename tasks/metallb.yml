@@ -50,12 +50,12 @@
 
 
 # Patch Service to Loadbalancer
-#- name: Patch Service to Loadbalancer
-#  ansible.builtin.shell:
-#    cmd: |
-#      kubectl patch svc kubernetes -n default -p '{"spec": {"type": "LoadBalancer"}}'
+- name: Patch Service to Loadbalancer
+  ansible.builtin.shell:
+    cmd: |
+      kubectl patch svc kubernetes -n default -p '{"spec": {"type": "LoadBalancer"}}'
 
-#- name: restart traefik
+# - name: restart traefik
 #  ansible.builtin.shell:
 #    cmd: |
 #      kubectl rollout restart deployment traefik -n kube-system
