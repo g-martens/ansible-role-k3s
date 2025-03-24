@@ -17,6 +17,7 @@
   retries: 10
   delay: 10
 
+
 # Configure MetalLB
 - name: Place Metallb template
   ansible.builtin.template:
@@ -50,10 +51,10 @@
 
 
 # Patch Service to Loadbalancer
-- name: Patch Service to Loadbalancer
-  ansible.builtin.shell:
-    cmd: |
-      kubectl patch svc kubernetes -n default -p '{"spec": {"type": "LoadBalancer"}}'
+#- name: Patch Service to Loadbalancer
+#  ansible.builtin.shell:
+#    cmd: |
+#ß      kubectl patch svc kubernetes -n default -p '{"spec": {"type": "LoadBalancer"}}'
 
 # - name: restart traefik
 #  ansible.builtin.shell:
