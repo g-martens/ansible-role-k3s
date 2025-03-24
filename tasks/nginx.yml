@@ -1,7 +1,7 @@
 ---
 - name: Install NGINX ingress on k3s_namespace
   ansible.builtin.shell: |
-    kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.5.1/deploy/static/provider/cloud/deploy.yaml
+    kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.5.1/deploy/static/provider/baremetal/deploy.yaml
 
 - name: deploy template nginx loadbalancer
   ansible.builtin.template:
