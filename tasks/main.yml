@@ -4,10 +4,10 @@
     file: install-rancher.yml
   tags: install
 
-#- name: Install MetalLB
-#  ansible.builtin.import_tasks:
-#    file: metallb.yml
-#  tags: metallb
+- name: Install MetalLB
+  ansible.builtin.import_tasks:
+    file: metallb.yml
+  tags: metallb
 
 - name: Install NGINX
   ansible.builtin.import_tasks:
