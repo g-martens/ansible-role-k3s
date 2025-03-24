@@ -9,8 +9,8 @@
     file: metallb.yml
   tags: metallb
 
-- name: Install NGINX
-  ansible.builtin.import_tasks:
-    file: nginx.yml
-  tags: nginx
+#- name: Install NGINX
+#  ansible.builtin.import_tasks:
+#    file: nginx.yml
+#ß  tags: nginx
 ...
